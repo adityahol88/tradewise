@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trading Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            padding: 30px;
+            background: #f0f2f5;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            margin: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h4 {
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        thead th {
+            background-color: #e3f2fd;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            padding: 12px;
+        }
+
+        tbody td {
+            padding: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .positive {
+            color: #2e7d32;
+            font-weight: bold;
+        }
+
+        .negative {
+            color: #c62828;
+            font-weight: bold;
+        }
+
+        #plot {
+            margin-top: 40px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h2>Welcome, {{ user.first_name|default:user.username }} 👋</h2>
+        <a href="{% url 'account_logout' %}">Logout</a>
+    </div>
+
+    <h4>📋 {{ watchlist.0.datetime }}  Watchlist</h4>
+
+    {% if watchlist %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Close</th>
+                    <th>Change %</th>
+                    <th>Volume Change</th>
+                    <th>RSI</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in watchlist %}
+                    <tr>
+                        <td>{{ item.Symbol }}</td>
+                        <td>{{ item.Close|floatformat:2 }}</td>
+                       <td class="{% if item.Change > 0 %}positive{% else %}negative{% endif %}">
+                           {{ item.Change|floatformat:2 }} %
+                        </td>
+                        <td>{{ item.Volume_Change|floatformat:2 }}</td>
+                        <td>{{ item.RSI|floatformat:2 }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No watchlist data available.</p>
+    {% endif %}
+
+    {% comment %} <div id="plot"></div> {% endcomment %}
+</div>
+
+<script>
+    const x = ['2025-06-01', '2025-06-02', '2025-06-03', '2025-06-04'];
+    const y = [160, 162, 158, 165];
+
+    Plotly.newPlot('plot', [{
+        x: x,
+        y: y,
+        type: 'scatter',
+        mode: 'lines+markers',
+        marker: { color: '#007bff' },
+        line: { shape: 'spline' }
+    }], {
+        margin: { t: 10 },
+        xaxis: { title: 'Date' },
+        yaxis: { title: 'Price' }
+    });
+</script>
+</body>
+</html>

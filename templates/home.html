@@ -1,0 +1,6 @@
+<h1>Welcome to Trading Helper</h1>
+{% if user.is_authenticated %}
+    <p>Hello, {{ user.username }}! <a href="{% url 'account_logout' %}">Logout</a></p>
+{% else %}
+    <a href="{% url 'account_login' %}">Login</a>
+{% endif %}

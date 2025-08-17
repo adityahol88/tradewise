@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+migrations/
+data/
+client_secret_342874880751-ndm8n6l9jvo2kjmbg57dhlvh3qmo1qc4.apps.googleusercontent.com.json
+client_secret_342874880751-vg5a23b7pqjot5kikd7js75euvi4n1s3.apps.googleusercontent.com.json
+db.sqlite3
+.env
