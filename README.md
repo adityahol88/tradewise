@@ -3,26 +3,26 @@
 Tradewise is a **full-stack platform** for managing stock portfolios, generating watchlists, and automating trading workflows.  
 It combines a **Django backend** with a responsive frontend and integrates with trading APIs for real-time execution.  
 
-🚀 Currently under active development — features like backtesting and strategy execution are planned.
+ Currently under active development — features like backtesting and strategy execution are planned.
 
 ---
 
-## ✨ Features
+##  Features
 
-- 📊 **Portfolio Management**  
+-  **Portfolio Management**  
   Track holdings, P&L, and overall portfolio performance.
 
-- 📋 **Watchlist Generator**  
+-  **Watchlist Generator**  
   Add, edit, and monitor stocks with real-time price updates.
 
-- ⚡ **Trading API Integration**  
+-  **Trading API Integration**  
   Place, modify, and cancel orders via broker APIs.  
   (Future: low-latency C++ module for execution.)
 
-- 🔒 **Authentication & Security**  
+-  **Authentication & Security**  
   User login, sessions, and role-based access.
 
-- 🛠 **Extensible Design**  
+-  **Extensible Design**  
   Architecture supports planned modules:
   - Backtesting historical strategies
   - Automated trade execution
@@ -30,7 +30,7 @@ It combines a **Django backend** with a responsive frontend and integrates with 
 
 ---
 
-## 🏗 Tech Stack
+##  Tech Stack
 
 - **Backend**: [Django](https://www.djangoproject.com/), SQLite/PostgreSQL  
 - **Frontend**: React (planned)  
@@ -41,7 +41,7 @@ It combines a **Django backend** with a responsive frontend and integrates with 
 ---
 
 
-## ⚡ Getting Started
+##  Getting Started
 
 1. Clone the repo:
    ```bash
